@@ -15,7 +15,7 @@ public class CsvReaderTest {
             CSVReader csvReader = new CSVReader(new FileReader(fileName));
             List<String[]> data = csvReader.readAll();
             for(String[] dd : data){
-                System.out.println(Arrays.toString(dd));
+                System.out.println(dd.length + "-" +Arrays.toString(dd));
             }
             csvReader.close();
         } catch (Exception e) {

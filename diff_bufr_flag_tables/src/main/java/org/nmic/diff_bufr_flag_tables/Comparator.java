@@ -91,16 +91,16 @@ public class Comparator {
             String compVal = (String)ent.getValue();
             String baseVal = (String)baseCode.get(key);
             if (baseVal != null){
-                if(!compVal.equals(baseVal)){
+                if(!compVal.equalsIgnoreCase(baseVal)){
                     isSame = false;
                     isDiff = true;
-                    write(diffWriter,String.format("'%s,'%s,%s,%s", code, key, baseVal, compVal));
+                    write(diffWriter,String.format("'%s,'%s,\"%s\",\"%s\"", code, key, baseVal, compVal));
                 }
                 baseCode.remove(key);
             }else{
                 isSame = false;
                 isAdd = true;
-                write(diffWriter,String.format("'%s,'%s,%s,%s", code, key, "", compVal));
+                write(diffWriter,String.format("'%s,'%s,%s,\"%s\"", code, key, "", compVal));
             }
         }
         
@@ -111,7 +111,7 @@ public class Comparator {
             while(it.hasNext()){
                 String key = (String)it.next();
                 String baseVal = (String)baseCode.get(key);
-                write(diffWriter,String.format("'%s,'%s,%s,%s", code, key, baseVal, ""));
+                write(diffWriter,String.format("'%s,'%s,\"%s\",%s", code, key, baseVal, ""));
             }
         }
         
